@@ -19,7 +19,7 @@ const App = () => {
 							<div className="actions-header__img">
 								<img src="@img/cart.svg" alt="cart"/>
 							</div>
-							<span className="actions-header__text">1205 руб.</span>
+							<span className="actions-header__text"><strong>1205 руб.</strong></span>
 						</div>
 						<div className="actions-header__item">
 							<div className="actions-header__img">
@@ -36,6 +36,28 @@ const App = () => {
 					</div>
 				</div>
 			</header>
+			<main>
+				<section className="page">
+					<div className="page__container">
+						<h1 className="page__title">Все кроссовки</h1>
+						<div className="page__body">
+							<article className="page__item card">
+								<img src="@img/01.jpg" alt=""/>
+								<h3 className="card__text">Мужские Кроссовки Nike Blazer Mid Suede</h3>
+								<div className="card__block">
+									<div className="card__left">
+										<span className="card__cost">цена</span>
+										<span className="card__cost-number">12 999 руб.</span>
+									</div>
+									<button className="card__button">
+										<img src="@img/add.svg" alt=""/>
+									</button>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+			</main>
 		</>
 	)
 	
