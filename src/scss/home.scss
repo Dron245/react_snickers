@@ -42,6 +42,10 @@
 		display: flex;
 		align-items: center;
 		gap: 8px;
+
+		&_cart {
+			cursor: pointer;
+		}
 	}
 
 	&__img {
@@ -81,6 +85,18 @@
 		border: 1px solid #9d9d9d;
 		font-size: 16px;
 	}
+
+	&__input-close[class] {
+		position: absolute;
+		right: 10px;
+		left: initial;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+	}
+
 	&__title {
 		font-size: 32px;
 		font-weight: 700;
@@ -112,11 +128,20 @@
 	position: absolute;
 	right: 0;
 	width: 450px;
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
 	z-index: 2;
+	&__top {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__close {
+		cursor: pointer;
+	}
+
 		&__title {
 			font-weight: 700;
 			font-size: 24px;
