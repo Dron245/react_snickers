@@ -136,6 +136,7 @@
 	&__top {
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: auto;
 	}
 
 	&__close {
@@ -235,4 +236,34 @@
 				}
 			}
 		}
+}
+
+
+.cart-empty {
+	display: grid;
+	place-items: center;
+	margin-bottom: auto;
+	img {
+		&:not(:last-child) {margin-bottom: toRem(20);}
+	}
+	h2 {
+		font-weight: 600;
+		font-size: 22px;
+		&:not(:last-child) {margin-bottom: toRem(10);}
+	}
+	p {
+		font-size: 16px;
+		line-height: 1.5;
+		opacity: 0.4;
+		&:not(:last-child) {margin-bottom: toRem(40);}
+		text-align: center;
+	}
+	button {
+		font-weight: 600;
+		font-size: 16px;
+		color: white;
+		background: #9dd458;
+		border-radius: 18px;
+		padding: 18px toRem(60);
+	}
 }

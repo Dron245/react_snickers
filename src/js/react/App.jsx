@@ -15,7 +15,7 @@ const App = () => {
 	const [items, setItems] = useState([]) //Каталог
 	const [searchValue, setSearchValue] = useState('') //Работа с поиском
 	const [favorites, setFavorites] = useState([]) //фавориты список
-	const [isLoading, setisLoading] = useState(true)
+	const [isLoading, setisLoading] = useState(false)
 	useEffect(() => {
 
 		async function fethData() {
@@ -78,10 +78,9 @@ const App = () => {
 	const isItemAdded = (id) => {
 		return cartItems.some(obj => Number(obj.id) === Number(id))
 		}
-	console.log(isItemAdded());
 
 	return (
-		<AppContext.Provider value={{cartItems, favorites, items, isItemAdded}}>
+		<AppContext.Provider value={{cartItems, favorites, items, isItemAdded, onAddToFavorite, setCartView, setCartItems}}>
 		<>
 			{cartView && <Driwer itemsCart={cartItems} onClose={()=>setCartView(false)} onRemove={onRemoveItem}/>}
 			<Header onview={()=>setCartView(true)} />

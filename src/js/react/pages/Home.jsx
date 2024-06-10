@@ -17,7 +17,6 @@ export default function Home({searchValue,
 				onFavorite={(obj) => {onAddToFavorite(obj)}}
 				onAddCart = {(obj) => {onAddToCart(obj)}}
 				{...item}
-				// added = {isItemAdded(item && item.id)}
 				loading= {isLoading}
 				/>
 				)

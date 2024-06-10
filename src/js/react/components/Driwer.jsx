@@ -1,6 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import Info from "./Info.jsx";
+import AppContext from "../context.js";
+import axios from "axios";
+
 
 export default function Driwer({onClose, onRemove, itemsCart = []}) {
+	const {cartItems, setCartItems} = useContext(AppContext)
+	const [isOrderComplite, setisOrderComplite] = useState(false);
+	const [orderId, setOrderId] = useState(null);
+	const [isLoading, setisLoading] = useState(false)
+	const onClickOrder = async () => {
+		try {
+			setisLoading(true)
+			const{data} = await axios.post("https://666020395425580055b251b6.mockapi.io/Orders", {items:cartItems});
+			setOrderId(data.id)
+			setisOrderComplite(true);
+			setCartItems([]);
+		} catch (error) {
+			alert('Ошибка при создании заказа :(')
+		}
+		setisLoading(false)
+	}
 
 	return (
 		<div className="overlay">
@@ -43,16 +63,16 @@ export default function Driwer({onClose, onRemove, itemsCart = []}) {
 									<span className="bottom__number">1 498 руб.</span>
 								</div>
 							</div>
-							<button className="bottom__button">
+							<button disabled={isLoading} onClick={onClickOrder} className="bottom__button">
 								<span>Оформить заказ</span>
 								<img src="@img/arrow-order.svg" alt=""/>
 							</button>
 						</div>
 					</> :
-						<div>
-							<h2>Корзина пустая</h2>
-							<button onClick={onClose}>Вернуться назад</button>
-						</div>
+						<Info 
+							title= {isOrderComplite ? "Заказ оформлен" : "Корзина пустая"}
+							description={ isOrderComplite ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
+							image = {isOrderComplite ? "/img/order-complite.jpg" : "/img/cart-empty.png"}/>
 					}
 				</div>
 			</div>
