@@ -1,6 +1,9 @@
 import React from "react";
-import {createBrowserRouter,RouterProvider,Route,Link, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
+import { useCart } from "../hoocks/useCart.jsx";
+
 export default function Header(props) {
+	const { totalPrice} = useCart()
 	return (
 		<header className="header">
 				<div className="header__container">
@@ -20,7 +23,7 @@ export default function Header(props) {
 							<div className="actions-header__img">
 								<img src="@img/cart.svg" alt="cart"/>
 							</div>
-							<span className="actions-header__text"><strong>1205 руб.</strong></span>
+							<span className="actions-header__text"><strong>{totalPrice} руб.</strong></span>
 						</div>
 						<Link to="/favorites">
 							<div className="actions-header__item">

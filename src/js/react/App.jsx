@@ -15,9 +15,9 @@ const App = () => {
 	const [items, setItems] = useState([]) //Каталог
 	const [searchValue, setSearchValue] = useState('') //Работа с поиском
 	const [favorites, setFavorites] = useState([]) //фавориты список
-	const [isLoading, setisLoading] = useState(false)
-	useEffect(() => {
+	const [isLoading, setisLoading] = useState(false) //загрузка страницы
 
+	useEffect(() => {
 		async function fethData() {
 			setisLoading(true)
 			//Выводим список выбранных товаров в корзине

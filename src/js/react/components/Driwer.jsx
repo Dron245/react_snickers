@@ -1,14 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Info from "./Info.jsx";
-import AppContext from "../context.js";
 import axios from "axios";
+import { useCart } from "../hoocks/useCart.jsx";
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Driwer({onClose, onRemove, itemsCart = []}) {
-	const {cartItems, setCartItems} = useContext(AppContext)
-	const [isOrderComplite, setisOrderComplite] = useState(false);
 	const [orderId, setOrderId] = useState(null);
-	const [isLoading, setisLoading] = useState(false)
+	const [isOrderComplite, setisOrderComplite] = useState(false);
+	const [isLoading, setisLoading] = useState(false);
+	const {cartItems, setCartItems, totalPrice} = useCart()
 	const onClickOrder = async () => {
 		try {
 			setisLoading(true)
@@ -16,8 +17,16 @@ export default function Driwer({onClose, onRemove, itemsCart = []}) {
 			setOrderId(data.id)
 			setisOrderComplite(true);
 			setCartItems([]);
+			for (let i = 0; i < cartItems.length; i++) {
+				console.log(1);
+				const element = cartItems[i];
+				await axios.delete("https://6659f9acde346625136ea097.mockapi.io/Cart/" + element.id);
+				await delay(1000)
+			}
+			
 		} catch (error) {
 			alert('Ошибка при создании заказа :(')
+			console.log(error);
 		}
 		setisLoading(false)
 	}
@@ -55,12 +64,12 @@ export default function Driwer({onClose, onRemove, itemsCart = []}) {
 								<div className="bottom__cost">
 									<span className="bottom__total">Итого</span>
 									<div></div>
-									<span className="bottom__number">21 498 руб.</span>
+									<span className="bottom__number">{totalPrice} руб.</span>
 								</div>
 								<div className="bottom__cost">
 									<span className="bottom__total">Налог 5%:</span>
 									<div></div>
-									<span className="bottom__number">1 498 руб.</span>
+									<span className="bottom__number">{totalPrice * 0.05} руб.</span>
 								</div>
 							</div>
 							<button disabled={isLoading} onClick={onClickOrder} className="bottom__button">
