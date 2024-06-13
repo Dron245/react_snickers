@@ -33,12 +33,14 @@ export default function Header(props) {
 								<span className="actions-header__text">Закладки</span>
 							</div>
 						</Link>
-						<div className="actions-header__item">
-							<div className="actions-header__img">
-								<img src="@img/user.svg" alt="user"/>
+						<Link to="orders">
+							<div className="actions-header__item">
+								<div className="actions-header__img">
+									<img src="@img/user.svg" alt="user"/>
+								</div>
+								<span className="actions-header__text">Профиль</span>
 							</div>
-							<span className="actions-header__text">Профиль</span>
-						</div>
+						</Link>
 					</div>
 				</div>
 			</header>
