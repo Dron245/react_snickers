@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Info from "./Info.jsx";
+import Info from "../Info.jsx";
 import axios from "axios";
-import { useCart } from "../hoocks/useCart.jsx";
+import { useCart } from "../../hoocks/useCart.jsx";
+import "./Driwer.module.scss"
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function Driwer({onClose, onRemove, itemsCart = []}) {
+export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 	const [orderId, setOrderId] = useState(null);
 	const [isOrderComplite, setisOrderComplite] = useState(false);
 	const [isLoading, setisLoading] = useState(false);
@@ -32,7 +33,7 @@ export default function Driwer({onClose, onRemove, itemsCart = []}) {
 	}
 
 	return (
-		<div className="overlay">
+		<div className={`overlay ${opened ? "driwer-open" : ""}`}>
 				<div className="driwer">
 					<div className="driwer__top">
 						<h3 className="driwer__title">Корзина</h3>

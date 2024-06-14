@@ -15,6 +15,7 @@ export default function Favorites({ onAddToFavorite}) {
 						<Card
 							key={index}
 							onFavorite={onAddToFavorite}
+							onAddCart = {(obj) => {onAddToCart(obj)}}
 							favorited = {true}
 							{...item}
 						/>

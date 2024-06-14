@@ -3,9 +3,10 @@ import styles from "./Card.module.scss";
 import { useContext, useState } from "react";
 import ContentLoader from "react-content-loader"
 import AppContext from "../../context.js";
-// console.log(styles);
+
 export default function Card(
-	{onFavorite, 
+	{onFavorite,
+	// parendId,
 	imageUrl, 
 	id, 
 	title, 
@@ -15,11 +16,12 @@ export default function Card(
 	loading = false}) {
 	const {isItemAdded} = useContext(AppContext)
 	const [isFavorite, setIsFavorite] = useState(favorited) //фавориты
+	const obj = {id, parendId:id, title, cost, imageUrl}
 	const addPlus = () => {
-		onAddCart({id, title, cost, imageUrl})
+		onAddCart(obj)
 	}
 	const addFavorite= () => {
-		onFavorite({id, title, cost, imageUrl})
+		onFavorite(obj)
 		setIsFavorite(!isFavorite)
 	}
 	return (
@@ -49,9 +51,9 @@ export default function Card(
 						<span className="card__cost">цена</span>
 						<span className="card__cost-number">{cost} руб</span>
 					</div>
-					<button className="card__button" >
+					{onAddCart && <button className="card__button" >
 						<img onClick={addPlus} src={isItemAdded(id) ? "@img/add-complite.svg" : "@img/add.svg"} alt=""/>
-					</button>
+					</button>}
 				</div>
 			</article>
 		}

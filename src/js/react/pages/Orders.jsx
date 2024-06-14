@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import axios from "axios";
-import Card from "../components/Card/Card.jsx";
-import  AppContext  from "../context.js";
 
+import Card from "../components/Card/Card.jsx";
+import AppContext  from "../context.js";
 
 export default function Orders() {
 	const {onAddToCart, onAddToFavorite} = useContext(AppContext)
@@ -12,6 +12,7 @@ export default function Orders() {
 	useEffect(() => {
 		(async () => {
 			try {
+				setisLoading(true)
 				const {data} = await axios.get('https://666020395425580055b251b6.mockapi.io/Orders')
 				setOrders(data.map(obj => obj.items).flat())
 				setisLoading(false)
@@ -29,11 +30,10 @@ export default function Orders() {
 						<h1 className="page__title">Мои заказы</h1>
 					</div>
 					<div className="page__body">
-						{orders.map((item, index) =>
+						{(isLoading ? [...Array(8)] : orders).map((item, index) =>
 						<Card
 							key={index}
 							onFavorite={(obj) => {onAddToFavorite(obj)}}
-							onAddCart = {(obj) => {onAddToCart(obj)}}
 							{...item}
 							loading= {isLoading}
 						/>

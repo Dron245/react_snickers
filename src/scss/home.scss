@@ -3,6 +3,11 @@
 	padding-block: 43px;
 	border-bottom: 1px solid #eaeaea;
 	background-color: white;
+	position: relative;
+	z-index: 2;
+	.driwer-open + & {
+		z-index: initial;
+	}
 	&__container {
 		display: flex;
 		justify-content: space-between;
@@ -115,75 +120,6 @@
 		background: rgb(255, 255, 255);
 	}
 }
-
-.overlay {
-	position: absolute;
-	inset: 0;
-	background: hsla(0, 0%, 0%, 0.5);
-	z-index: 1;
-}
-.driwer {
-	padding: 30px;
-	background-color: white;
-	position: absolute;
-	right: 0;
-	width: 450px;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-	z-index: 2;
-	&__top {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: auto;
-	}
-
-	&__close {
-		cursor: pointer;
-	}
-
-		&__title {
-			font-weight: 700;
-			font-size: 24px;
-		}
-
-		&__list {
-			flex: 1;
-			overflow-y: auto;
-		}
-
-		&__item {
-			padding: 30px toRem(20);
-			border: 1px solid #f3f3f3;
-			border-radius: 20px;
-			display: flex;
-			align-items: center;
-			&:not(:last-child) {margin-bottom: toRem(20);}
-		}
-
-		&__img {
-			margin-right: 20px;
-			flex: 0 0 25%;
-			img {
-				width: 100%;
-				height: auto;
-			}
-		}
-
-		&__content {
-			.card__text {
-				margin-bottom: 8px;
-			}
-		}
-
-		&__close {
-		}
-
-		&__bottom {
-		}
-}
-
 
 .bottom {
 	display: flex;
