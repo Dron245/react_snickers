@@ -38,7 +38,7 @@ export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 					<div className="driwer__top">
 						<h3 className="driwer__title">Корзина</h3>
 						<div onClick={onClose} className="driwer__close">
-							<img src="@img/close.svg" alt=""/>
+							<img src="img/close.svg" alt=""/>
 						</div>
 					</div>
 					{itemsCart.length > 0 ? 
@@ -54,7 +54,7 @@ export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 											<span className="actions-header__text"><strong>{obj.cost}</strong></span>
 										</div>
 										<button onClick={() => onRemove(obj.id)} className="driwer__close">
-											<img src="@img/close.svg" alt=""/>
+											<img src="img/close.svg" alt=""/>
 										</button>
 									</li>
 								)
@@ -75,14 +75,14 @@ export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 							</div>
 							<button disabled={isLoading} onClick={onClickOrder} className="bottom__button">
 								<span>Оформить заказ</span>
-								<img src="@img/arrow-order.svg" alt=""/>
+								<img src="img/arrow-order.svg" alt=""/>
 							</button>
 						</div>
 					</> :
 						<Info 
 							title= {isOrderComplite ? "Заказ оформлен" : "Корзина пустая"}
 							description={ isOrderComplite ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
-							image = {isOrderComplite ? "/img/order-complite.jpg" : "/img/cart-empty.png"}/>
+							image = {isOrderComplite ? "img/order-complite.jpg" : "img/cart-empty.png"}/>
 					}
 				</div>
 			</div>

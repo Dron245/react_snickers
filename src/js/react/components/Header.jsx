@@ -21,14 +21,14 @@ export default function Header(props) {
 					<div className="header__actions actions-header">
 						<div onClick={props.onview} className="actions-header__item actions-header__item_cart">
 							<div className="actions-header__img">
-								<img src="@img/cart.svg" alt="cart"/>
+								<img src="img/cart.svg" alt="cart"/>
 							</div>
 							<span className="actions-header__text"><strong>{totalPrice} руб.</strong></span>
 						</div>
 						<Link to="/favorites">
 							<div className="actions-header__item">
 								<div className="actions-header__img">
-									<img src="@img/favorite.svg" alt="favorite"/>
+									<img src="img/favorite.svg" alt="favorite"/>
 								</div>
 								<span className="actions-header__text">Закладки</span>
 							</div>
@@ -36,7 +36,7 @@ export default function Header(props) {
 						<Link to="orders">
 							<div className="actions-header__item">
 								<div className="actions-header__img">
-									<img src="@img/user.svg" alt="user"/>
+									<img src="img/user.svg" alt="user"/>
 								</div>
 								<span className="actions-header__text">Профиль</span>
 							</div>

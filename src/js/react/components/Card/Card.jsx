@@ -42,7 +42,7 @@ export default function Card(
 			</ContentLoader> :
 			<article className="page__item card">
 				<button onClick={addFavorite} className="card__favorite">
-					<img src={isFavorite ? "@img/favorite-like.svg" : "@img/favorite.svg"} alt=""/>
+					<img src={isFavorite ? "img/favorite-like.svg" : "img/favorite.svg"} alt=""/>
 				</button>
 				<img src={imageUrl} alt=""/>
 				<h3 className="card__text">{title}</h3>
@@ -52,7 +52,7 @@ export default function Card(
 						<span className="card__cost-number">{cost} руб</span>
 					</div>
 					{onAddCart && <button className="card__button" >
-						<img onClick={addPlus} src={isItemAdded(id) ? "@img/add-complite.svg" : "@img/add.svg"} alt=""/>
+						<img onClick={addPlus} src={isItemAdded(id) ? "img/add-complite.svg" : "img/add.svg"} alt=""/>
 					</button>}
 				</div>
 			</article>

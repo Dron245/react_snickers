@@ -46,7 +46,7 @@ const App = () => {
 		try {
 			const findItem = cartItems.find(cartobj => Number(cartobj.parendId) === Number(obj.id))
 			if (findItem) {
-				setCartItems(prew => prew.filter(item => Number(item.parendId) !== Number(obj.id)))
+				setCartItems(prev => prev.filter(item => Number(item.parendId) !== Number(obj.id)))
 				await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${findItem.id}`)
 			} else {
 				//Добавляем в бэкенд и в фронт список выбранных товаров
@@ -71,7 +71,7 @@ const App = () => {
 	const onRemoveItem = async (id) => {
 		try {
 			//удаляю из корзины товары
-			setCartItems(prew => prew.filter(item => Number(item.parendId) !== Number(id)))
+			setCartItems(prev => prev.filter(item => Number(item.parendId) !== Number(id)))
 			await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${id}`)
 		} catch (error) {
 			alert('ошибка при удалении из корзины')
@@ -88,11 +88,11 @@ const App = () => {
 		try {
 			if (favorites.find(favobj => Number(favobj.id) === Number(obj.id))) {
 				await axios.delete(`https://666020395425580055b251b6.mockapi.io/favorites/${obj.id}`)
-				setFavorites(prew => prew.filter(item => Number(item.id) !== Number(obj.id)))
+				setFavorites(prev => prev.filter(item => Number(item.id) !== Number(obj.id)))
 			} else {
 				//отправляю в бэкенд избранные кроссовки
 				const {data} = await axios.post('https://666020395425580055b251b6.mockapi.io/favorites', obj)
-				setFavorites(prew => [...prew, data])
+				setFavorites(prev => [...prev, data])
 			}
 		} catch (error) {
 			alert('Не удалось добавить в фавориты')

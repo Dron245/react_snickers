@@ -30,8 +30,8 @@ export default function Home({searchValue,
 					<div className="page__top">
 						<h1 className="page__title">{searchValue ? `Поиск по: ${searchValue}` : "Все кроссовки"}</h1>
 						<div className="page__search">
-							<img src="@img/search-input.svg" alt=""/>
-							{searchValue && <img onClick={() => setSearchValue('')} className="page__input-close" src="@img/close.svg" alt="Clear"/>}
+							<img src="img/search-input.svg" alt=""/>
+							{searchValue && <img onClick={() => setSearchValue('')} className="page__input-close" src="img/close.svg" alt="Clear"/>}
 							<input value={searchValue} onChange={onChangeSearchInput} id="input" className="page__input" placeholder="Поиск" type="text" />
 						</div>
 					</div>
