@@ -7935,20 +7935,31 @@
             Action["Replace"] = "REPLACE";
         })(Action || (Action = {}));
         const PopStateEventType = "popstate";
-        function router_createBrowserHistory(options) {
+        function router_createHashHistory(options) {
             if (options === void 0) options = {};
-            function createBrowserLocation(window, globalHistory) {
-                let {pathname, search, hash} = window.location;
+            function createHashLocation(window, globalHistory) {
+                let {pathname = "/", search = "", hash = ""} = parsePath(window.location.hash.substr(1));
+                if (!pathname.startsWith("/") && !pathname.startsWith(".")) pathname = "/" + pathname;
                 return createLocation("", {
                     pathname,
                     search,
                     hash
                 }, globalHistory.state && globalHistory.state.usr || null, globalHistory.state && globalHistory.state.key || "default");
             }
-            function createBrowserHref(window, to) {
-                return typeof to === "string" ? to : router_createPath(to);
+            function createHashHref(window, to) {
+                let base = window.document.querySelector("base");
+                let href = "";
+                if (base && base.getAttribute("href")) {
+                    let url = window.location.href;
+                    let hashIndex = url.indexOf("#");
+                    href = hashIndex === -1 ? url : url.slice(0, hashIndex);
+                }
+                return href + "#" + (typeof to === "string" ? to : router_createPath(to));
             }
-            return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options);
+            function validateHashLocation(location, to) {
+                warning(location.pathname.charAt(0) === "/", "relative pathnames are not supported in hash history.push(" + JSON.stringify(to) + ")");
+            }
+            return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options);
         }
         function invariant(value, message) {
             if (value === false || value === null || typeof value === "undefined") throw new Error(message);
@@ -8958,10 +8969,10 @@
         react_dom_namespaceObject[FLUSH_SYNC];
         const USE_ID = "useId";
         react_namespaceObject[USE_ID];
-        function BrowserRouter(_ref4) {
-            let {basename, children, future, window} = _ref4;
+        function HashRouter(_ref5) {
+            let {basename, children, future, window} = _ref5;
             let historyRef = react.useRef();
-            if (historyRef.current == null) historyRef.current = router_createBrowserHistory({
+            if (historyRef.current == null) historyRef.current = router_createHashHistory({
                 window,
                 v5Compat: true
             });
@@ -11637,7 +11648,7 @@ and limitations under the License.
         };
         const react_App = App;
         const root = document.querySelector("#root") ? document.querySelector("#root") : document.querySelector(".wrapper");
-        client.createRoot(root).render(react.createElement(BrowserRouter, null, react.createElement(react_App, null)));
+        client.createRoot(root).render(react.createElement(HashRouter, null, react.createElement(react_App, null)));
         let addWindowScrollEvent = false;
         setTimeout((() => {
             if (addWindowScrollEvent) {
