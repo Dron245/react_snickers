@@ -11612,7 +11612,7 @@ and limitations under the License.
             }), react.createElement(Header, {
                 onview: () => setCartView(true)
             }), react.createElement(Routes, null, react.createElement(Route, {
-                path: "",
+                path: "/",
                 element: react.createElement(Home, {
                     items,
                     searchValue,
@@ -11624,12 +11624,12 @@ and limitations under the License.
                     isLoading
                 })
             }), react.createElement(Route, {
-                path: "favorites",
+                path: "/favorites",
                 element: react.createElement(Favorites, {
                     onAddToFavorite
                 })
             }), react.createElement(Route, {
-                path: "Orders",
+                path: "/Orders",
                 element: react.createElement(Orders, {
                     onAddToFavorite
                 })
