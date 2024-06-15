@@ -6,7 +6,7 @@
 	"private": true,
 	"license": "",
 	"type": "module",
-	"homepage": "https://dron245.github.io/react-snickers_b/",
+	"homepage": "https://dron245.github.io/react-snickers/",
 	"proxy": "https://6659f9acde346625136ea097.mockapi.io/",
 	"scripts": {
 		"start": "npm i --legacy-peer-deps",
@@ -39,6 +39,7 @@
 		"eslint-plugin-react-refresh": "latest",
 		"file-include-webpack-plugin-replace": "latest",
 		"file-loader": "^6.2.0",
+		"gh-pages": "^6.1.1",
 		"gulp": "latest",
 		"gulp-autoprefixer": "latest",
 		"gulp-clean-css": "latest",
