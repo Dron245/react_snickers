@@ -116,7 +116,7 @@ const App = () => {
 			<Header onview={()=>setCartView(true)} />
 			<Routes>
 				<Route 
-					path=""
+					path="/"
 					element={ <Home
 					items={items}
 					searchValue={searchValue}
@@ -130,14 +130,14 @@ const App = () => {
 					}/>
 
 				<Route
-					path="favorites"
+					path="/favorites"
 					element= {<Favorites
 						onAddToFavorite={onAddToFavorite}
 						/>}
 				/>
 				
 				<Route
-					path="Orders"
+					path="/Orders"
 					element= {<Orders
 						onAddToFavorite={onAddToFavorite}
 						/>}
