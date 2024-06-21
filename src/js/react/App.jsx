@@ -31,6 +31,7 @@ const App = () => {
 				setisLoading(false)
 
 				setCartItems(cartResp.data);
+				// console.log(cartResp.data);
 				setFavorites(favoriteResp.data);
 				setItems(itemsResp.data);
 			} catch (error) {
@@ -44,8 +45,12 @@ const App = () => {
 	
 	const onAddToCart = async (obj) => {
 		try {
-			const findItem = cartItems.find(cartobj => Number(cartobj.parendId) === Number(obj.id))
+			const findItem = cartItems.find(cartobj => {
+				console.log(cartobj);
+				console.log(obj);
+				return (Number(cartobj.parendId) === Number(obj.id))})
 			if (findItem) {
+				console.log(findItem);
 				setCartItems(prev => prev.filter(item => Number(item.parendId) !== Number(obj.id)))
 				await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${findItem.id}`)
 			} else {
@@ -62,8 +67,9 @@ const App = () => {
 					return item
 				}))
 			}
+			
 		} catch (error) {
-			alert('ошибка при добавлении в корзину')
+			alert('ошибка при обработке корзины')
 			console.log(error);
 		}
 	}
@@ -105,7 +111,15 @@ const App = () => {
 		}
 
 	return (
-		<AppContext.Provider value={{cartItems, favorites, items, isItemAdded, onAddToFavorite, setCartView, setCartItems, onAddToCart}}>
+		<AppContext.Provider value={{
+			cartItems, 
+			favorites, 
+			items, 
+			isItemAdded, 
+			onAddToFavorite, 
+			setCartView, 
+			setCartItems, 
+			onAddToCart}}>
 		<>
 			<Driwer 
 			itemsCart={cartItems} 

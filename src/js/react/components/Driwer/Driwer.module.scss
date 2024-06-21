@@ -21,7 +21,7 @@
 	transition: right 0.3s, visibility 0.3s;
 	right: -100%;
 	visibility: hidden;
-	.driwer-open & {
+	.driwer-open + & {
 		right: 0%;
 		visibility: visible;
 	}

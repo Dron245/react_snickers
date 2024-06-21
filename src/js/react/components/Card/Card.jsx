@@ -6,19 +6,18 @@ import AppContext from "../../context.js";
 
 export default function Card(
 	{onFavorite,
-	// parendId,
 	imageUrl, 
 	id, 
 	title, 
 	cost, 
-	onAddCart, 
+	onAddToCart, 
 	favorited = false, 
 	loading = false}) {
 	const {isItemAdded} = useContext(AppContext)
 	const [isFavorite, setIsFavorite] = useState(favorited) //фавориты
 	const obj = {id, parendId:id, title, cost, imageUrl}
 	const addPlus = () => {
-		onAddCart(obj)
+		onAddToCart(obj)
 	}
 	const addFavorite= () => {
 		onFavorite(obj)
@@ -51,7 +50,7 @@ export default function Card(
 						<span className="card__cost">цена</span>
 						<span className="card__cost-number">{cost} руб</span>
 					</div>
-					{onAddCart && <button className="card__button" >
+					{onAddToCart && <button className="card__button" >
 						<img onClick={addPlus} src={isItemAdded(id) ? "img/add-complite.svg" : "img/add.svg"} alt=""/>
 					</button>}
 				</div>

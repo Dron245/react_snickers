@@ -1,7 +1,14 @@
 import React, { useContext } from "react"
 import Card from "../components/Card/Card.jsx";
 
-export default function Home({searchValue,
+// const qwe = ['a', 'be', 'c', 'b', 'bendfkjgnkfg']
+// const r = qwe.filter(item => item.includes(''))
+// console.log(r);
+// const er = r.map(item => item + '9')
+// console.log(er);
+
+export default function Home({
+	searchValue, 
 	onChangeSearchInput,
 	items,
 	onAddToFavorite,
@@ -9,13 +16,17 @@ export default function Home({searchValue,
 	onAddToCart,
 	isLoading}) {
 		const renderItems = () => {
-			const filteredItems = items.filter(item  => item.title.toLowerCase().includes(searchValue));
+			const filteredItems = items.filter(item  => {
+				console.log(item.title.toLowerCase().includes(searchValue));
+
+				return (item.title.toLowerCase().includes(searchValue))
+			});
 			return (isLoading ? [...Array(8)] : filteredItems)
 				.map((item, index) => (
 				<Card
 				key={index}
 				onFavorite={(obj) => {onAddToFavorite(obj)}}
-				onAddCart = {(obj) => {onAddToCart(obj)}}
+				onAddToCart = {(obj) => {onAddToCart(obj)}}
 				{...item}
 				loading= {isLoading}
 				/>

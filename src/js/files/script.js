@@ -4,4 +4,4 @@ import { isMobile } from "./functions.js";
 import { flsModules } from "./modules.js";
 
 const wrapper = document.querySelector('.wrapper')
-// wrapper.addEventListener('click', e => console.log(e.target))
+wrapper.addEventListener('click', e => console.log(e.target))
