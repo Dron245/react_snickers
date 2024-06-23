@@ -7,7 +7,7 @@ import AppContext from "../../context.js";
 export default function Card(
 	{onFavorite,
 	imageUrl, 
-	id, 
+	id,
 	title, 
 	cost, 
 	onAddToCart, 
@@ -16,6 +16,7 @@ export default function Card(
 	const {isItemAdded} = useContext(AppContext)
 	const [isFavorite, setIsFavorite] = useState(favorited) //фавориты
 	const obj = {id, parendId:id, title, cost, imageUrl}
+	console.log(isFavorite);
 	const addPlus = () => {
 		onAddToCart(obj)
 	}

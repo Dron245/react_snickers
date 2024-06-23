@@ -17,7 +17,7 @@ export default function Home({
 	isLoading}) {
 		const renderItems = () => {
 			const filteredItems = items.filter(item  => {
-				console.log(item.title.toLowerCase().includes(searchValue));
+				// console.log(item.title.toLowerCase().includes(searchValue));
 
 				return (item.title.toLowerCase().includes(searchValue))
 			});

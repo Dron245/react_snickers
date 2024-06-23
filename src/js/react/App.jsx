@@ -16,7 +16,7 @@ const App = () => {
 	const [searchValue, setSearchValue] = useState('') //Работа с поиском
 	const [favorites, setFavorites] = useState([]) //фавориты список
 	const [isLoading, setisLoading] = useState(false) //загрузка страницы
-
+	// console.log(cartItems);
 	useEffect(() => {
 		async function fethData() {
 			try {
@@ -45,18 +45,19 @@ const App = () => {
 	
 	const onAddToCart = async (obj) => {
 		try {
+			// console.log(obj);
 			const findItem = cartItems.find(cartobj => {
-				console.log(cartobj);
-				console.log(obj);
+				// console.log(cartobj);
 				return (Number(cartobj.parendId) === Number(obj.id))})
+				// console.log(findItem);
 			if (findItem) {
-				console.log(findItem);
 				setCartItems(prev => prev.filter(item => Number(item.parendId) !== Number(obj.id)))
 				await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${findItem.id}`)
 			} else {
 				//Добавляем в бэкенд и в фронт список выбранных товаров
 				setCartItems(prev => [...prev, obj])
 				const {data} = await axios.post('https://6659f9acde346625136ea097.mockapi.io/Cart', obj)
+				// console.log(data);
 				setCartItems(prev => prev.map( item =>{
 					if (item.parendId === data.parendId) {
 						return {
@@ -77,8 +78,13 @@ const App = () => {
 	const onRemoveItem = async (id) => {
 		try {
 			//удаляю из корзины товары
-			setCartItems(prev => prev.filter(item => Number(item.parendId) !== Number(id)))
-			await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${id}`)
+			
+			setCartItems(prev => {
+				return prev.filter(item => {
+
+					return Number(item.id) !== Number(id)}
+				)})
+				await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${id}`)
 		} catch (error) {
 			alert('ошибка при удалении из корзины')
 			console.log(error);
@@ -92,6 +98,7 @@ const App = () => {
 
 	const onAddToFavorite = async (obj) => {
 		try {
+			console.log(obj);
 			if (favorites.find(favobj => Number(favobj.id) === Number(obj.id))) {
 				await axios.delete(`https://666020395425580055b251b6.mockapi.io/favorites/${obj.id}`)
 				setFavorites(prev => prev.filter(item => Number(item.id) !== Number(obj.id)))
@@ -147,6 +154,7 @@ const App = () => {
 					path="/favorites"
 					element= {<Favorites
 						onAddToFavorite={onAddToFavorite}
+						onAddToCart={onAddToCart}
 						/>}
 				/>
 				

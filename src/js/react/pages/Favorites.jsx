@@ -1,8 +1,9 @@
 import React, { useContext } from "react"
 import Card from "../components/Card/Card.jsx";
 import  AppContext  from "../context.js";
-export default function Favorites({ onAddToFavorite}) {
+export default function Favorites({ onAddToFavorite, onAddToCart}) {
 	const {favorites} = useContext(AppContext)
+	// console.log(favorites);
 	return (
 		<main>
 			<section className="page">
@@ -15,7 +16,7 @@ export default function Favorites({ onAddToFavorite}) {
 						<Card
 							key={index}
 							onFavorite={onAddToFavorite}
-							onAddCart = {(obj) => {onAddToCart(obj)}}
+							onAddToCart = {(obj) => {onAddToCart(obj)}}
 							favorited = {true}
 							{...item}
 						/>

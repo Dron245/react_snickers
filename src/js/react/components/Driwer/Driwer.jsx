@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Info from "../Info.jsx";
+import Info from "../info.jsx";
 import axios from "axios";
 import { useCart } from "../../hoocks/useCart.jsx";
 import "./Driwer.module.scss"
@@ -22,7 +22,7 @@ export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 				console.log(1);
 				const element = cartItems[i];
 				await axios.delete("https://6659f9acde346625136ea097.mockapi.io/Cart/" + element.id);
-				await delay(1000)
+				await delay(100)
 			}
 			
 		} catch (error) {
@@ -44,11 +44,14 @@ export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 				</div>
 				{itemsCart.length > 0 ? 
 				<>
+					{/* {console.log(itemsCart)} */}
 					<ul className="driwer__list">
 						{itemsCart.map((obj) => 
-								<li key={obj.id} className="driwer__item">
+								<li key={obj.title} className="driwer__item">
 									<div className="driwer__img">
 										<img src={obj.imageUrl} alt=""/>
+										{/* {console.log(obj.cid)} */}
+										{/* {console.log(typeof(obj.cid))} */}
 									</div>
 									<div className="driwer__content">
 										<h3 className="card__text">{obj.title}</h3>
@@ -59,7 +62,9 @@ export default function Driwer({onClose, onRemove, itemsCart = [], opened}) {
 									</button>
 								</li>
 							)
+							
 						}
+						
 					</ul>
 					<div className="driwer__bottom bottom">
 						<div className="bottom__body">
