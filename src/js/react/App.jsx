@@ -98,14 +98,24 @@ const App = () => {
 
 	const onAddToFavorite = async (obj) => {
 		try {
-			console.log(obj);
-			if (favorites.find(favobj => Number(favobj.id) === Number(obj.id))) {
-				await axios.delete(`https://666020395425580055b251b6.mockapi.io/favorites/${obj.id}`)
-				setFavorites(prev => prev.filter(item => Number(item.id) !== Number(obj.id)))
+			const findItemFav = favorites.find(favobj => Number(favobj.parendId) === Number(obj.id))
+			if (findItemFav) {
+				setFavorites(prev => prev.filter(item => Number(item.parendId) !== Number(obj.id)))
+				await axios.delete(`https://666020395425580055b251b6.mockapi.io/favorites/${findItemFav.id}`)
 			} else {
+
 				//отправляю в бэкенд избранные кроссовки
+				setFavorites(prev => [...prev, obj])
 				const {data} = await axios.post('https://666020395425580055b251b6.mockapi.io/favorites', obj)
-				setFavorites(prev => [...prev, data])
+				setFavorites(prev => prev.map( item =>{
+					if (item.parendId === data.parendId) {
+						return {
+							...item,
+							id: data.id
+						}
+					};
+					return item
+				}))
 			}
 		} catch (error) {
 			alert('Не удалось добавить в фавориты')
@@ -115,14 +125,20 @@ const App = () => {
 	const isItemAdded = (id) => {
 		// console.log(cartItems);
 		return cartItems.some(obj => Number(obj.parendId) === Number(id))
-		}
+	}
+
+	const isFavoriteAdded = (id) => {
+		// console.log(isFavoriteAdded);
+		return favorites.some(obj => Number(obj.parendId) === Number(id))
+	}
 
 	return (
 		<AppContext.Provider value={{
 			cartItems, 
 			favorites, 
 			items, 
-			isItemAdded, 
+			isItemAdded,
+			isFavoriteAdded,
 			onAddToFavorite, 
 			setCartView, 
 			setCartItems, 
@@ -155,6 +171,7 @@ const App = () => {
 					element= {<Favorites
 						onAddToFavorite={onAddToFavorite}
 						onAddToCart={onAddToCart}
+						isFavoriteAdded={isFavoriteAdded}
 						/>}
 				/>
 				

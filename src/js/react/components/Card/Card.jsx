@@ -11,18 +11,21 @@ export default function Card(
 	title, 
 	cost, 
 	onAddToCart, 
-	favorited = false, 
+	favorited = false,
+	
+	test = false,
 	loading = false}) {
-	const {isItemAdded} = useContext(AppContext)
+	const {isItemAdded, isFavoriteAdded} = useContext(AppContext)
 	const [isFavorite, setIsFavorite] = useState(favorited) //фавориты
 	const obj = {id, parendId:id, title, cost, imageUrl}
-	console.log(isFavorite);
+	// console.log(isFavorite);
 	const addPlus = () => {
 		onAddToCart(obj)
 	}
 	const addFavorite= () => {
 		onFavorite(obj)
 		setIsFavorite(!isFavorite)
+		// isFavoriteAdded(id)
 	}
 	return (
 		<>
@@ -41,8 +44,8 @@ export default function Card(
 			<rect x="87" y="124" rx="0" ry="0" width="18" height="26" />
 			</ContentLoader> :
 			<article className="page__item card">
-				<button onClick={addFavorite} className="card__favorite">
-					<img src={isFavorite ? "img/favorite-like.svg" : "img/favorite.svg"} alt=""/>
+				<button  className="card__favorite">
+					<img onClick={addFavorite} src={isFavoriteAdded(id) ? "img/favorite-like.svg" : "img/favorite.svg"} alt=""/>
 				</button>
 				<img src={imageUrl} alt=""/>
 				<h3 className="card__text">{title}</h3>

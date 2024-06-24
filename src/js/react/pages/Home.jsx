@@ -11,8 +11,8 @@ export default function Home({
 	searchValue, 
 	onChangeSearchInput,
 	items,
-	onAddToFavorite,
 	setSearchValue,
+	onAddToFavorite,
 	onAddToCart,
 	isLoading}) {
 		const renderItems = () => {
@@ -29,6 +29,8 @@ export default function Home({
 				onAddToCart = {(obj) => {onAddToCart(obj)}}
 				{...item}
 				loading= {isLoading}
+				// test = {isFavorite}
+				// favorited = {isFavorite}
 				/>
 				)
 			)
