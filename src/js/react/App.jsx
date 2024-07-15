@@ -45,11 +45,8 @@ const App = () => {
 	
 	const onAddToCart = async (obj) => {
 		try {
-			// console.log(obj);
-			const findItem = cartItems.find(cartobj => {
-				// console.log(cartobj);
-				return (Number(cartobj.parendId) === Number(obj.id))})
-				// console.log(findItem);
+			const findItem = cartItems.find(cartobj =>
+				 Number(cartobj.parendId) === Number(obj.id))
 			if (findItem) {
 				setCartItems(prev => prev.filter(item => Number(item.parendId) !== Number(obj.id)))
 				await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${findItem.id}`)
@@ -79,11 +76,9 @@ const App = () => {
 		try {
 			//удаляю из корзины товары
 			
-			setCartItems(prev => {
-				return prev.filter(item => {
-
-					return Number(item.id) !== Number(id)}
-				)})
+			setCartItems(prev => prev.filter(item => 
+					Number(item.id) !== Number(id)
+				))
 				await axios.delete(`https://6659f9acde346625136ea097.mockapi.io/Cart/${id}`)
 		} catch (error) {
 			alert('ошибка при удалении из корзины')
@@ -149,7 +144,6 @@ const App = () => {
 			onClose={()=>setCartView(false)} 
 			onRemove={onRemoveItem}
 			opened= {cartView}/>
-			{/* {console.log(cartView)} */}
 			<Header onview={()=>setCartView(true)} />
 			<Routes>
 				<Route 

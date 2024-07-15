@@ -13,19 +13,16 @@ export default function Card(
 	onAddToCart, 
 	favorited = false,
 	
-	test = false,
 	loading = false}) {
 	const {isItemAdded, isFavoriteAdded} = useContext(AppContext)
 	const [isFavorite, setIsFavorite] = useState(favorited) //фавориты
 	const obj = {id, parendId:id, title, cost, imageUrl}
-	// console.log(isFavorite);
 	const addPlus = () => {
 		onAddToCart(obj)
 	}
 	const addFavorite= () => {
 		onFavorite(obj)
 		setIsFavorite(!isFavorite)
-		// isFavoriteAdded(id)
 	}
 	return (
 		<>
